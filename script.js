@@ -17,6 +17,7 @@
   const atmosphere = document.querySelector(".atmosphere");
   const vantaBackground = document.querySelector("#vantaBackground");
   const book = document.querySelector("#book");
+  const bookCover = document.querySelector("#bookCover");
   const spreads = [...document.querySelectorAll(".spread")];
   const turningUnderlay = document.querySelector("#turningUnderlay");
   const turningPage = document.querySelector("#turningPage");
@@ -190,12 +191,18 @@
 
     // 1. Continuous 3D Hardcover Flip (Chapter 0 -> Chapter 1)
     const coverProgress = clamp(raw, 0, 1);
+    const isCoverActive = coverProgress < 0.98;
     const coverAngle = -180 * coverProgress;
     const coverCurl = Math.sin(coverProgress * Math.PI);
     const coverLift = coverCurl * 26;
     const coverRoll = -coverCurl * 1.6;
     const coverLeftPercent = isSingle ? 4 : (25 + 25 * coverProgress);
     const openProgress = clamp(raw / 0.55, 0, 1);
+
+    if (bookCover) {
+      bookCover.style.visibility = isCoverActive ? "visible" : "hidden";
+      bookCover.style.zIndex = isCoverActive ? "30" : "-1";
+    }
 
     root.style.setProperty("--cover-angle", `${coverAngle.toFixed(2)}deg`);
     root.style.setProperty("--cover-left", `${coverLeftPercent.toFixed(2)}%`);
