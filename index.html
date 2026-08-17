@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
     <a class="skip-link" href="#story-book">Skip to the story</a>
@@ -344,8 +344,11 @@
             </div>
 
             <section class="book-cover" id="bookCover" aria-label="Cover: Mehnaz &amp; Alqama — Nov 7th">
-              <img class="cover-image" src="assets/cover.png" alt="Cover: Mehnaz &amp; Alqama — Nov 7th" />
-              <div class="cover-overlay" aria-hidden="true"></div>
+              <div class="cover-front">
+                <img class="cover-image" src="assets/cover.png" alt="Cover: Mehnaz &amp; Alqama — Nov 7th" />
+                <div class="cover-overlay" aria-hidden="true"></div>
+              </div>
+              <div class="cover-back" aria-hidden="true"></div>
             </section>
           </article>
         </div>
@@ -369,6 +372,6 @@
     <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.clouds.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>

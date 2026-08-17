@@ -77,15 +77,6 @@
         }
       });
     });
-
-    if (!gsap || reducedMotion) return;
-    const activeSpread = spreads[index];
-    gsap.killTweensOf(activeSpread);
-    gsap.fromTo(
-      activeSpread,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.32, ease: "power2.out", overwrite: true, clearProps: "opacity" }
-    );
   }
 
   function createTurningCopy(page, copyClass = "turning-content") {
@@ -189,20 +180,38 @@
     const baseChapter = Math.floor(raw);
     const localProgress = raw - baseChapter;
     const overallProgress = raw / (chapterCount - 1);
-    const isOpen = raw > 0.14;
+    const isOpen = raw > 0.06;
+    const isSingle = singlePageLayout.matches;
 
     root.style.setProperty("--chapter-progress", overallProgress.toFixed(4));
     book.classList.toggle("is-closed", !isOpen);
     book.classList.toggle("is-open", isOpen);
-    book.classList.remove("is-closing");
     scrollPrompt.style.opacity = raw > 0.2 ? "0" : "1";
 
+    // 1. Continuous 3D Hardcover Flip (Chapter 0 -> Chapter 1)
+    const coverProgress = clamp(raw, 0, 1);
+    const coverAngle = -180 * coverProgress;
+    const coverCurl = Math.sin(coverProgress * Math.PI);
+    const coverLift = coverCurl * 26;
+    const coverRoll = -coverCurl * 1.6;
+    const coverLeftPercent = isSingle ? 4 : (25 + 25 * coverProgress);
+    const openProgress = clamp(raw / 0.55, 0, 1);
+
+    root.style.setProperty("--cover-angle", `${coverAngle.toFixed(2)}deg`);
+    root.style.setProperty("--cover-left", `${coverLeftPercent.toFixed(2)}%`);
+    root.style.setProperty("--cover-lift", `${coverLift.toFixed(2)}px`);
+    root.style.setProperty("--cover-roll", `${coverRoll.toFixed(2)}deg`);
+    root.style.setProperty("--cover-curl", coverCurl.toFixed(4));
+    root.style.setProperty("--book-open-progress", openProgress.toFixed(4));
+
+    // 2. Active Spreads Underneath
     let spreadIndex = 0;
     if (baseChapter >= 1) {
       spreadIndex = clamp(baseChapter - 1 + (localProgress >= 0.5 ? 1 : 0), 0, spreads.length - 1);
     }
     setActiveSpread(spreadIndex);
 
+    // 3. Subsequent Page Turning (Chapter 1 to 7)
     const isPageTurn = isOpen && baseChapter >= 1 && baseChapter < chapterCount - 1;
     const showTurningPage = isPageTurn && localProgress > 0.025 && localProgress < 0.985 && !reducedMotion;
     const pageCurl = showTurningPage ? Math.sin(localProgress * Math.PI) : 0;
@@ -238,10 +247,14 @@
 
     lenis = new window.Lenis({
       autoRaf: false,
-      duration: 1.1,
+      duration: 1.2,
       easing: (time) => Math.min(1, 1.001 - Math.pow(2, -10 * time)),
       smoothWheel: true,
       syncTouch: false,
+    });
+
+    lenis.on("scroll", () => {
+      requestRender();
     });
 
     if (gsap) {
