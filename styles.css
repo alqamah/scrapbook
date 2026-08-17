@@ -466,10 +466,6 @@ button {
 .scatter-ticket::before { content:""; position:absolute; top:6px; bottom:6px; left:34px; border-left:1px dashed rgba(61,45,30,.32); }
 .scatter-ticket span { display:block; margin-left:34px; font-size:.46rem; letter-spacing:.15em; }
 .scatter-ticket strong { display:block; margin:5px 0 0 34px; font: .65rem "Libre Caslon Text", serif; }
-.scatter-flower { left:-5%; bottom:10%; width:130px; height:170px; transform:rotate(-22deg); opacity:.8; }
-.scatter-flower > b { position:absolute; width:26px; height:44px; left:53px; top:56px; border-radius:70% 0 70% 0; background:#8f704c; transform-origin:bottom; }
-.scatter-flower > b:nth-of-type(2){ transform:rotate(72deg); }.scatter-flower > b:nth-of-type(3){ transform:rotate(144deg); }.scatter-flower > b:nth-of-type(4){ transform:rotate(216deg); }
-.scatter-flower > i { position:absolute; width:2px; height:135px; left:65px; top:40px; background:#6f704d; transform:rotate(5deg); }
 
 .book {
   position: absolute;
@@ -868,7 +864,6 @@ button {
   .rsvp-page { padding: 4%; }
   .envelope form { padding: 6%; }
   .epilogue-art { height: 56%; }
-  .scatter-flower { left: -13%; }
   .scatter-ticket { right: -12%; }
 }
 
