@@ -26,8 +26,6 @@
   const chapterTitle = document.querySelector("#chapterTitle");
   const pageAnnouncement = document.querySelector("#pageAnnouncement");
   const scrollPrompt = document.querySelector("#scrollPrompt");
-  const prevButton = document.querySelector("#prevChapter");
-  const nextButton = document.querySelector("#nextChapter");
   const chapterButtons = [...document.querySelectorAll("[data-chapter]")];
   const motionToggle = document.querySelector("#motionToggle");
   const soundToggle = document.querySelector("#soundToggle");
@@ -173,8 +171,6 @@
     chapterNumber.textContent = String(chapter).padStart(2, "0");
     chapterTitle.textContent = chapterTitles[chapter];
     pageAnnouncement.textContent = `Chapter ${chapter}: ${chapterTitles[chapter]}`;
-    prevButton.disabled = chapter === 0;
-    nextButton.disabled = chapter === chapterCount - 1;
 
     chapterButtons.forEach((button) => {
       const isActive = Number(button.dataset.chapter) === chapter;
@@ -361,8 +357,6 @@
     }
   });
 
-  prevButton.addEventListener("click", () => goToChapter(Math.round(getRawChapter()) - 1));
-  nextButton.addEventListener("click", () => goToChapter(Math.round(getRawChapter()) + 1));
   closeBookButton.addEventListener("click", () => {
     book.classList.add("is-closing");
     goToChapter(0);
