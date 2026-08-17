@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3d271d" />
+    <link rel="icon" href="assets/alnaz-logo.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Our Greatest Adventure — an interactive wedding scrapbook for Mira and Theo."
+    />
+    <title>Our Greatest Adventure — Mira &amp; Theo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#story-book">Skip to the story</a>
+
+    <div class="atmosphere" aria-hidden="true">
+      <div id="vantaBackground"></div>
+    </div>
+
+    <header class="topbar">
+      <a class="brand-logo" href="#chapter-0" data-chapter-link="0" aria-label="Alnaz — return to the cover">
+        <img src="assets/alnaz-logo.svg" width="48" height="48" alt="Alnaz" />
+      </a>
+      <p class="eyebrow topbar-title">Mira &amp; Theo · 12 September 2027</p>
+      <div class="topbar-actions">
+        <button class="icon-button" id="soundToggle" type="button" aria-label="Play ambient sound" aria-pressed="false">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M5 9v6h4l5 4V5L9 9H5Z" />
+            <path class="sound-wave" d="M17 9.5c.8.7 1.2 1.5 1.2 2.5s-.4 1.8-1.2 2.5M19.4 7c1.5 1.3 2.3 3 2.3 5s-.8 3.7-2.3 5" />
+          </svg>
+        </button>
+        <button class="text-button" id="motionToggle" type="button" aria-pressed="false">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M4 12h3l2-5 4 10 2-5h5" />
+          </svg>
+          <span>Less motion</span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="chapter-rail" aria-label="Story chapters">
+      <p>Our story</p>
+      <div class="rail-line"><span id="railProgress"></span></div>
+      <nav id="chapterNav">
+        <button type="button" data-chapter="0" class="is-active" aria-current="step"><span>Cover</span></button>
+        <button type="button" data-chapter="1"><span>A note</span></button>
+        <button type="button" data-chapter="2"><span>Two paths</span></button>
+        <button type="button" data-chapter="3"><span>Adventures</span></button>
+        <button type="button" data-chapter="4"><span>The promise</span></button>
+        <button type="button" data-chapter="5"><span>The day</span></button>
+        <button type="button" data-chapter="6"><span>RSVP</span></button>
+        <button type="button" data-chapter="7"><span>Until then</span></button>
+      </nav>
+    </aside>
+
+    <main id="story-book" tabindex="-1">
+      <section class="stage" aria-label="Interactive wedding story">
+        <div class="story-caption" aria-live="polite">
+          <span id="chapterNumber">00</span>
+          <div>
+            <p>Chapter</p>
+            <strong id="chapterTitle">The beginning</strong>
+          </div>
+        </div>
+
+        <div class="book-wrap">
+          <div class="table-scatter scatter-ticket" aria-hidden="true">
+            <span>BOARDING PASS</span>
+            <strong>ADVENTURE</strong>
+          </div>
+          <div class="table-scatter scatter-flower" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><b></b>
+          </div>
+          <div class="book-shadow" aria-hidden="true"></div>
+
+          <article class="book is-closed" id="book" aria-label="Our Greatest Adventure scrapbook">
+            <div class="page-stack page-stack-left" aria-hidden="true"></div>
+            <div class="page-stack page-stack-right" aria-hidden="true"></div>
+
+            <div class="spreads" id="spreads">
+              <section class="spread" data-title="A note from us" aria-hidden="true">
+                <div class="page left-page dedication-page">
+                  <div class="page-number">i</div>
+                  <p class="handwritten note-kicker">For our favourite people,</p>
+                  <h1>Every good adventure is better when it’s shared.</h1>
+                  <p class="body-copy">
+                    Somewhere between missed trains, rainy picnics and one very brave question,
+                    our separate stories became one. We made this little book to show you the way here.
+                  </p>
+                  <p class="handwritten signature">With all our love,<br /><strong>Mira &amp; Theo</strong></p>
+                  <svg class="doodle-heart" aria-hidden="true" viewBox="0 0 120 72">
+                    <path d="M8 53C36 17 48 67 65 43 84 16 98 24 111 9" />
+                    <path d="M47 26c-12-17-29 2 0 22 28-22 11-39 0-22Z" />
+                  </svg>
+                </div>
+                <div class="page right-page keepsake-page">
+                  <div class="page-number">ii</div>
+                  <div class="postcard dedication-card">
+                    <p class="postmark">SPECIAL DELIVERY · 2027</p>
+                    <div class="stamp stamp-bird" aria-label="Illustrated postage stamp with a bird">
+                      <svg aria-hidden="true" viewBox="0 0 80 80"><path d="M16 48c21-2 24-26 51-22-13 6-12 20-6 29-16-8-28-5-45-7Z"/><path d="M20 48 9 58l24-7"/></svg>
+                    </div>
+                    <p class="handwritten postcard-copy">Meet us at the next page.<br />Bring your dancing shoes.</p>
+                    <span class="postcard-line"></span><span class="postcard-line"></span><span class="postcard-line short"></span>
+                  </div>
+                  <div class="pressed-sprig" aria-hidden="true"><i></i><b></b><b></b><b></b><b></b><b></b></div>
+                  <p class="tiny-caption">A small beginning for our biggest chapter.</p>
+                </div>
+              </section>
+
+              <section class="spread" data-title="Two paths, one story" aria-hidden="true">
+                <div class="page left-page journey-page journey-mira">
+                  <div class="page-number">01</div>
+                  <p class="eyebrow">Once upon a time</p>
+                  <h2>Mira chased<br />the horizon.</h2>
+                  <div class="portrait-card portrait-mira" role="img" aria-label="Illustrated silhouette of Mira looking toward mountains">
+                    <svg aria-hidden="true" viewBox="0 0 240 180">
+                      <path class="sun" d="M147 50a28 28 0 1 0 56 0 28 28 0 0 0-56 0Z" />
+                      <path class="mountain far" d="m0 139 62-70 48 48 29-29 101 65v27H0Z" />
+                      <path class="mountain near" d="m0 158 60-38 42 23 43-50 95 65v22H0Z" />
+                      <path class="figure" d="M103 153c2-19 2-43 11-48 8-5 18-3 22 5 4 9 3 27 7 43h-40Zm9-56a10 10 0 1 1 20 0 10 10 0 0 1-20 0Z" />
+                    </svg>
+                    <span class="tape tape-top"></span>
+                  </div>
+                  <ul class="mini-timeline">
+                    <li><span>1995</span>A pocket full of questions</li>
+                    <li><span>2016</span>A one-way ticket to anywhere</li>
+                  </ul>
+                  <p class="handwritten margin-note">“Say yes, then find the map.”</p>
+                </div>
+                <div class="page right-page journey-page journey-theo">
+                  <div class="page-number">02</div>
+                  <p class="eyebrow align-right">Meanwhile</p>
+                  <h2>Theo followed<br />every curious road.</h2>
+                  <div class="portrait-card portrait-theo" role="img" aria-label="Illustrated silhouette of Theo beside a winding road">
+                    <svg aria-hidden="true" viewBox="0 0 240 180">
+                      <path class="sun" d="M42 37a24 24 0 1 0 48 0 24 24 0 0 0-48 0Z" />
+                      <path class="mountain far" d="m0 132 55-53 53 43 42-73 90 90v41H0Z" />
+                      <path class="road" d="M112 180c17-46 10-61-14-76 44 10 73 31 91 76h-77Z" />
+                      <path class="figure" d="M145 150c1-18 1-40 10-46 8-5 18-3 22 6 3 8 3 25 6 40h-38Zm10-54a10 10 0 1 1 20 0 10 10 0 0 1-20 0Z" />
+                    </svg>
+                    <span class="tape tape-bottom"></span>
+                  </div>
+                  <ul class="mini-timeline">
+                    <li><span>1993</span>Never the quiet route</li>
+                    <li><span>2018</span>One camera, no itinerary</li>
+                  </ul>
+                  <p class="handwritten margin-note note-right">“The long way is the story.”</p>
+                  <div class="meeting-marker" aria-hidden="true"><i></i><span>HERE<br />WE MET</span></div>
+                </div>
+                <svg class="journey-thread" aria-hidden="true" viewBox="0 0 1000 650" preserveAspectRatio="none">
+                  <path class="thread-left" d="M110 530C240 490 290 540 390 432c45-48 82-55 110-58" />
+                  <path class="thread-right" d="M895 523C760 478 709 535 616 430c-48-54-87-60-116-56" />
+                  <circle cx="500" cy="374" r="8" />
+                </svg>
+              </section>
+
+              <section class="spread" data-title="The little adventures" aria-hidden="true">
+                <div class="page left-page memories-page">
+                  <div class="page-number">03</div>
+                  <p class="eyebrow">Field notes · 2019—2025</p>
+                  <h2>Turns out, ordinary days make the best souvenirs.</h2>
+                  <div class="polaroid polaroid-one" tabindex="0">
+                    <div class="memory-shot shot-road" role="img" aria-label="A vintage blue car on a mountain road"></div>
+                    <p>Roads with no names</p>
+                    <span class="tape tape-top"></span>
+                  </div>
+                  <div class="polaroid polaroid-two" tabindex="0">
+                    <div class="memory-shot shot-picnic" role="img" aria-label="Two teacups and wildflowers at a picnic"></div>
+                    <p>Tea tasted better here</p>
+                  </div>
+                  <svg class="doodle-plane" aria-hidden="true" viewBox="0 0 180 90"><path d="M7 70c43-3 42-54 93-42 30 7 28 35 70 31"/><path d="m88 27 31-16-12 24 20 8-8 7-24-12-12 14Z"/></svg>
+                </div>
+                <div class="page right-page memories-page">
+                  <div class="page-number">04</div>
+                  <div class="polaroid polaroid-three" tabindex="0">
+                    <div class="memory-shot shot-coast" role="img" aria-label="A couple walking on a golden Mediterranean beach"></div>
+                    <p>The coast we almost missed</p>
+                  </div>
+                  <div class="polaroid polaroid-four" tabindex="0">
+                    <div class="memory-shot shot-rain" role="img" aria-label="A couple sharing an umbrella on an old city street"></div>
+                    <p>Forecast: worth it</p>
+                    <span class="tape tape-corner"></span>
+                  </div>
+                  <div class="passport-stamp" aria-hidden="true"><strong>STILL<br />EXPLORING</strong><span>TOGETHER</span></div>
+                  <p class="handwritten adventure-note">We kept every ticket.<br />Well… almost every ticket.</p>
+                  <button class="loose-ticket draggable" type="button" aria-label="Drag this keepsake ticket">
+                    <span>ADMIT TWO</span><strong>THE GOOD PART</strong><i>∞</i>
+                  </button>
+                </div>
+              </section>
+
+              <section class="spread" data-title="The promise" aria-hidden="true">
+                <div class="page left-page proposal-page">
+                  <div class="page-number">05</div>
+                  <div class="proposal-sky" aria-hidden="true">
+                    <span class="proposal-moon"></span>
+                    <svg viewBox="0 0 500 280" preserveAspectRatio="none"><path d="M0 216 78 145l56 38 67-91 60 75 72-107 96 119 71-44v145H0Z"/></svg>
+                    <i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                  <p class="eyebrow light-label">14 February 2026 · 6:42 pm</p>
+                  <blockquote>“What if we made<br /><em>all</em> the tomorrows ours?”</blockquote>
+                  <p class="handwritten proposal-answer">I said yes before he found the ring.</p>
+                </div>
+                <div class="page right-page invitation-page">
+                  <div class="page-number">06</div>
+                  <div class="vellum" aria-hidden="true"><span>you’re invited</span></div>
+                  <div class="formal-invite">
+                    <svg class="invite-flourish" aria-hidden="true" viewBox="0 0 180 28"><path d="M4 15c30 0 31-12 50-12 15 0 16 12 36 12s21-12 36-12c19 0 20 12 50 12M72 15c7 0 10 5 18 10 8-5 11-10 18-10"/></svg>
+                    <p>Together with their families</p>
+                    <h2>Mira<br /><span>&amp;</span><br />Theo</h2>
+                    <p>invite you to celebrate<br />the beginning of their next chapter</p>
+                    <hr />
+                    <strong>Sunday · 12 September · 2027</strong>
+                    <small>The Lake House · Udaipur</small>
+                  </div>
+                  <div class="wax-mark" aria-hidden="true"><span>M·T</span></div>
+                </div>
+              </section>
+
+              <section class="spread" data-title="Where &amp; when" aria-hidden="true">
+                <div class="page left-page venue-page">
+                  <div class="page-number">07</div>
+                  <p class="eyebrow">Final destination</p>
+                  <h2>The Lake House</h2>
+                  <p class="venue-address">Udaipur, Rajasthan<br />12 September 2027</p>
+                  <div class="illustrated-map" role="img" aria-label="Illustrated map showing the wedding venue near a lake">
+                    <svg aria-hidden="true" viewBox="0 0 500 320">
+                      <path class="lake" d="M0 215c82-43 139 17 219-15 85-34 121-10 187 27 38 22 67 16 94 9v84H0Z" />
+                      <path class="map-road" d="M-10 78c91 6 111 69 190 63 106-9 98-96 205-88 59 4 68 53 125 56" />
+                      <path class="map-road small" d="M118-7c-9 79 53 90 47 161-5 54-49 66-49 171" />
+                      <path class="venue-house" d="m292 124 42-37 42 37v66h-84Z" />
+                      <path class="venue-roof" d="m279 125 55-51 56 51" />
+                      <circle class="map-pin" cx="334" cy="99" r="14" />
+                      <path class="trees" d="M62 200v-36m-16 12 16-27 17 27m331 37v-36m-16 12 16-27 17 27M224 64V28m-16 12 16-27 17 27" />
+                    </svg>
+                    <span class="map-label label-venue">The Lake House</span>
+                    <span class="map-label label-city">Old City · 18 min</span>
+                  </div>
+                  <a class="paper-link" href="https://maps.google.com" target="_blank" rel="noreferrer">Open directions <span>↗</span></a>
+                </div>
+                <div class="page right-page schedule-page">
+                  <div class="page-number">08</div>
+                  <p class="eyebrow">Sunday’s field guide</p>
+                  <h2>Pack light.<br />Dance heavy.</h2>
+                  <ol class="schedule-list">
+                    <li><time>4:00</time><div><strong>Welcome drinks</strong><span>The Lakeside Lawn</span></div></li>
+                    <li><time>5:00</time><div><strong>The ceremony</strong><span>Under the old fig tree</span></div></li>
+                    <li><time>6:30</time><div><strong>Dinner &amp; stories</strong><span>The Courtyard</span></div></li>
+                    <li><time>8:00</time><div><strong>Dancing</strong><span>Until our shoes give up</span></div></li>
+                  </ol>
+                  <div class="travel-note">
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 14h16M6 14l2-7h8l2 7M8 18h.01M16 18h.01M5 14v5h14v-5"/></svg>
+                    <div><strong>Getting there</strong><span>Shuttles leave the Old City hotels at 3:15 pm.</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="spread" data-title="Seal your reply" aria-hidden="true">
+                <div class="page left-page rsvp-intro-page">
+                  <div class="page-number">09</div>
+                  <p class="eyebrow">The guest list needs one thing</p>
+                  <h2>Your name,<br />right here.</h2>
+                  <p class="body-copy">Kindly send your reply by 12 July 2027. We have saved you a place at the table and a song on the dance floor.</p>
+                  <div class="reply-card" aria-hidden="true">
+                    <span>R.S.V.P.</span>
+                    <svg viewBox="0 0 260 130"><path d="M4 104c46-82 82 37 131-40 34-54 81-23 121-48"/><circle cx="4" cy="104" r="3"/><circle cx="256" cy="16" r="3"/></svg>
+                  </div>
+                  <p class="handwritten rsvp-aside">No carrier pigeon required.</p>
+                </div>
+                <div class="page right-page rsvp-page">
+                  <div class="page-number">10</div>
+                  <div class="envelope" id="rsvpEnvelope">
+                    <div class="envelope-flap" aria-hidden="true"></div>
+                    <form id="rsvpForm" data-lenis-prevent novalidate>
+                      <p class="eyebrow">Répondez s’il vous plaît</p>
+                      <h2>Will you join us?</h2>
+                      <div class="field-row">
+                        <label for="guestName">Your name <span aria-hidden="true">*</span></label>
+                        <input id="guestName" name="name" type="text" autocomplete="name" required />
+                        <p class="field-error" id="nameError"></p>
+                      </div>
+                      <fieldset>
+                        <legend>Your reply <span aria-hidden="true">*</span></legend>
+                        <label class="radio-card"><input type="radio" name="attendance" value="yes" required /><span>I’ll be there</span></label>
+                        <label class="radio-card"><input type="radio" name="attendance" value="no" /><span>Celebrating from afar</span></label>
+                      </fieldset>
+                      <div class="field-row">
+                        <label for="guestNote">A note for the book <span>optional</span></label>
+                        <textarea id="guestNote" name="note" rows="2" maxlength="140"></textarea>
+                      </div>
+                      <p class="form-error" id="formError" role="alert"></p>
+                      <button class="seal-button" type="submit">Seal my reply <span aria-hidden="true">→</span></button>
+                    </form>
+                    <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
+                      <div class="large-wax-seal"><span>M·T</span></div>
+                      <h2>Sealed with love.</h2>
+                      <p>Your reply is tucked safely into our book.</p>
+                      <button type="button" id="editRsvp">Edit reply</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="spread" data-title="Until the next chapter" aria-hidden="true">
+                <div class="page left-page final-page">
+                  <div class="page-number">11</div>
+                  <p class="eyebrow">Counting every sunrise</p>
+                  <h2>The greatest chapter begins in…</h2>
+                  <div class="countdown" aria-label="Countdown to the wedding">
+                    <div><strong id="days">000</strong><span>days</span></div>
+                    <div><strong id="hours">00</strong><span>hours</span></div>
+                    <div><strong id="minutes">00</strong><span>minutes</span></div>
+                  </div>
+                  <p class="handwritten final-note">Come for the vows.<br />Stay for the very bad dancing.</p>
+                  <div class="tiny-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <div class="page right-page epilogue-page">
+                  <div class="page-number">12</div>
+                  <div class="epilogue-art" aria-hidden="true">
+                    <svg viewBox="0 0 500 360">
+                      <circle class="sunset-sun" cx="388" cy="98" r="54" />
+                      <path class="hill hill-back" d="M0 244c91-79 127-40 199-91 78-56 129 42 179 31 53-12 74-71 122-42v218H0Z" />
+                      <path class="hill hill-front" d="M0 276c76-42 137-34 198 0 77 43 142-49 212-28 35 11 63 31 90 52v60H0Z" />
+                      <path class="path" d="M252 360c-5-62 41-80 24-122-11-29-45-28-44-62" />
+                      <g class="tiny-couple"><circle cx="235" cy="181" r="7"/><circle cx="252" cy="181" r="7"/><path d="M231 190v32m9-32v32m8-32v32m9-32v32M230 204l-8 13m27-13 12 11"/></g>
+                      <g class="art-balloons"><path d="M146 100c-21-3-28-29-7-40 20-10 35 9 24 27l-12 14-5-1Z"/><path d="M153 100l5 26m-15-26-4 26"/><path d="M92 136c-19-3-26-27-6-37 18-9 31 8 21 25l-11 13-4-1Z"/><path d="M98 136l4 20m-13-20-3 20"/></g>
+                    </svg>
+                  </div>
+                  <p class="handwritten epilogue-quote">See you where the road meets the lake.</p>
+                  <button class="close-book-button" id="closeBook" type="button">
+                    Close the book
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 6 6 6-6 6" /></svg>
+                  </button>
+                  <small>Made with memories · Mira &amp; Theo</small>
+                </div>
+              </section>
+            </div>
+
+            <div class="turning-underlay" id="turningUnderlay" aria-hidden="true"></div>
+            <div class="book-gutter" aria-hidden="true"></div>
+            <div class="turning-page" id="turningPage" aria-hidden="true">
+              <div class="turning-front"></div>
+              <div class="turning-back"></div>
+              <div class="turning-edge"></div>
+            </div>
+
+            <section class="book-cover" id="bookCover" aria-label="Cover: Our Greatest Adventure">
+              <div class="cover-grain" aria-hidden="true"></div>
+              <div class="cover-border" aria-hidden="true"></div>
+              <div class="cover-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="cover-content">
+                <p>THE ADVENTURE BOOK OF</p>
+                <div class="cover-monogram"><span>M</span><i></i><span>T</span></div>
+                <h1>Our Greatest<br />Adventure</h1>
+                <svg class="cover-mountains" aria-hidden="true" viewBox="0 0 460 100"><path d="m4 92 88-72 54 43 39-25 40 27 65-53 166 80Z"/><path d="m89 22 19 17 15-8 22 31m144-49 23 20 17-7 30 29"/></svg>
+                <p class="cover-date">12 · 09 · 2027</p>
+              </div>
+              <div class="cover-strap" id="coverStrap" aria-hidden="true"><span class="strap-loop"></span><span class="strap-buckle"></span></div>
+            </section>
+          </article>
+        </div>
+
+        <div class="stage-controls" aria-label="Page controls">
+          <button type="button" id="prevChapter" aria-label="Previous chapter">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7" /></svg>
+            <span>Previous</span>
+          </button>
+          <div class="scroll-prompt" id="scrollPrompt" aria-hidden="true">
+            <span>Scroll to open</span>
+            <i></i>
+          </div>
+          <button type="button" id="nextChapter" aria-label="Next chapter">
+            <span>Next</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></svg>
+          </button>
+        </div>
+      </section>
+
+      <div class="scroll-track" id="scrollTrack" aria-hidden="true">
+        <span id="chapter-0"></span><span id="chapter-1"></span><span id="chapter-2"></span><span id="chapter-3"></span>
+        <span id="chapter-4"></span><span id="chapter-5"></span><span id="chapter-6"></span><span id="chapter-7"></span>
+      </div>
+    </main>
+
+    <div class="sr-only" id="pageAnnouncement" aria-live="polite"></div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.clouds.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
