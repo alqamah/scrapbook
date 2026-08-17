@@ -262,6 +262,7 @@
 
     lenis.on("scroll", () => {
       requestRender();
+      scheduleSnap();
     });
 
     if (gsap) {
@@ -328,24 +329,69 @@
     });
   }
 
+  let snapTimeout = null;
+  let isNavigatingProgrammatically = false;
+
+  function scheduleSnap() {
+    if (isNavigatingProgrammatically) return;
+    if (document.activeElement && document.activeElement.matches("input, textarea, select")) return;
+
+    window.clearTimeout(snapTimeout);
+    snapTimeout = window.setTimeout(() => {
+      if (isNavigatingProgrammatically) return;
+      const raw = getRawChapter();
+      const targetChapter = Math.round(raw);
+      if (Math.abs(raw - targetChapter) > 0.02) {
+        goToChapter(targetChapter, reducedMotion ? "auto" : "smooth");
+      }
+    }, 180);
+  }
+
   function chapterScrollTop(index) {
     return (getScrollRange() / (chapterCount - 1)) * clamp(index, 0, chapterCount - 1);
   }
 
   function goToChapter(index, behavior = reducedMotion ? "auto" : "smooth") {
     const top = chapterScrollTop(index);
+    isNavigatingProgrammatically = true;
+    window.clearTimeout(snapTimeout);
+
     if (lenis) {
       lenis.scrollTo(top, {
-        duration: behavior === "auto" ? 0 : 1.1,
+        duration: behavior === "auto" ? 0 : 0.95,
         immediate: behavior === "auto",
+        onComplete: () => {
+          window.setTimeout(() => {
+            isNavigatingProgrammatically = false;
+          }, 80);
+        },
       });
       return;
     }
     window.scrollTo({ top, behavior });
+    window.setTimeout(() => {
+      isNavigatingProgrammatically = false;
+    }, 500);
   }
 
   window.addEventListener("scroll", () => {
     requestRender();
+    if (!lenis) scheduleSnap();
+  }, { passive: true });
+
+  window.addEventListener("wheel", () => {
+    isNavigatingProgrammatically = false;
+    scheduleSnap();
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    isNavigatingProgrammatically = false;
+    scheduleSnap();
+  }, { passive: true });
+
+  window.addEventListener("touchcancel", () => {
+    isNavigatingProgrammatically = false;
+    scheduleSnap();
   }, { passive: true });
 
   window.addEventListener("resize", () => {
